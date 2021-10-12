@@ -5,6 +5,7 @@ package tn.esprit.spring.services;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,19 +19,17 @@ import tn.esprit.spring.entities.User;
 
 
 @SpringBootTest
+//@TestMethodOrder(OrderAnnotation.class)
 class UserServiceImplTest {
 	@Autowired
 	IUserService us;
 	
 	private static final Logger l = LogManager.getLogger(UserServiceImpl.class);
 	
-/*	@Test
-	public void testRetrieveAllUsers(){
-		List<User> listusers = us.retrieveAllUsers();
-		Assertions.assertEquals(1, listusers.size());
-	}
-*/	
-	@Test
+	
+
+	//@Test
+	//@Order(1)
 	public void testAddUser() throws ParseException {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date d = dateFormat.parse("1995-11-08");
@@ -39,8 +38,26 @@ class UserServiceImplTest {
 		Assertions.assertEquals(u.getLastName(), userAdded.getLastName());
 		
 	}
-/*	@Test
-	public  void retrieveAllUseres() {
+
+	//@Test
+	//@Order(2)
+	public void testModifyUser() throws ParseException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date d = dateFormat.parse("1995-11-08");
+		User u = new User(5L,"mohamed" , "issa " , d , Role.CHEF_DEPARTEMENT);
+		User userupdated = us.updateUser(u) ;
+		Assertions.assertEquals(u.getLastName(), userupdated.getLastName());
+	}
+	
+	//@Test
+	public void testDeleteUser(){
+		us.deleteUser("1");
+		Assertions.assertNull(us.retrieveUser("1"));
+		l.info("User id:1 has been deleted");
+	}
+
+	//@Test
+	public  void testRetrieveAllUseres() {
 		List<User> users = us.retrieveAllUsers();
 		int i=0;
 		for (User user : users){
@@ -52,7 +69,32 @@ class UserServiceImplTest {
 		l.info("count users "+i);
 		Assertions.assertEquals(i, users.size());
 			}
-	*/
-	
+	//@Test
+	public void testRetrieveUser(){
+		l.info("Trying to retrieve id:2 user : ");
+		try{
+			
+		User userRetrieved = us.retrieveUser("2");
+		Assertions.assertEquals(2L, userRetrieved.getId());
+		}
+		catch (Exception e){
+			l.error("User 2 doesn't exist");
+		}
+				
+		}
+		
 
+	@Test
+	public void testAll(){
+		try{
+			l.info("In testAll()");
+			testAddUser();
+			testDeleteUser();
+			
+		}catch(Exception e){
+			l.error("out of testAll() with errors : "+ e);
+		}
+		
+	}
+	
 }

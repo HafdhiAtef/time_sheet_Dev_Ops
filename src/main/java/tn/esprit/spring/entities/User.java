@@ -29,6 +29,7 @@ public class User implements Serializable {
 	
 	private String lastName;
 	//cooooo
+	//user_mangemnt_branch
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	
