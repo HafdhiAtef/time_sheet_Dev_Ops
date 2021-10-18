@@ -5,13 +5,7 @@ pipeline{
         jdk 'oracle'
     }
     stages{
-        stage('GIT'){
-            steps {
-                echo"pulling project from git"
-                git "https://github.com/HafdhiAtef/time_sheet_Dev_Ops.git"
-                
-            }
-        }
+        
         stage('Maven Clean Compile'){
             steps {
                 echo "starting maven"
