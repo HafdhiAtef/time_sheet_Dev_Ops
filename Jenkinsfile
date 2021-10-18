@@ -1,45 +1,43 @@
-pipeline {
-    environment {
-        registry = "zakaria25/spring"
-        registryCredential = 'dockerhub_id'
-        dockerImage = ''
-        container='spring'
-    }
+pipeline{
     agent any
-    stages {
-        stage('Launch Maven-Lifecycle') {
-            steps {
-              bat 'mvn install'
-            }
-        }
-        stage('Send To Sonar (Code Quality) ') {
-            steps {
-              bat 'mvn sonar:sonar'
-            }
-        }
-        stage('Building our image') {
-            steps {
-                script {
-                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                 }
-            }
-        }
-        stage('Push our image to dockerhub') {
-            steps {
-                script {
-                 docker.withRegistry( '', registryCredential ) {
-                 dockerImage.push()
-                 }
-              }
-            }
-        }
-        stage('Running our image from dockerhub inside container') {
-            steps {
-               //bat "docker stop $container"
-               //bat "docker rm $container"
-               bat "docker run -d --name $container -p 3000:3000 $registry:$BUILD_NUMBER"
-            }
-        }
+    tools {
+        maven "3.8.1"
+        jdk 'oracle'
     }
+    stages{
+        stage('GIT'){
+            steps {
+                echo"pulling project from git"
+                git "https://github.com/HafdhiAtef/time_sheet_Dev_Ops.git"
+                
+            }
+        }
+        stage('Maven Clean Compile'){
+            steps {
+                echo "starting maven"
+                echo "Initiating clean compile commands"
+                sh 'mvn --version'
+                sh 'mvn clean compile'
+                
+            }
+            
+        }
+        stage('Maven Test'){
+            steps {
+                echo "Initiating Dynamic test ! "
+                sh 'mvn test'
+            }
+        }
+        stage('Notification!'){
+            steps {
+                emailext body: 'Check console output at $BUILD_URL to view the results. \n\n ${CHANGES} \n\n -------------------------------------------------- \n${BUILD_LOG, maxLines=100, escapeHtml=false}', 
+                    to: "atef.hafdhi@esprit.tn", 
+                    subject: 'New build Alert !: $PROJECT_NAME - #$BUILD_NUMBER'
+      
+            }
+            
+        }
+        
+    }
+    
 }
-
