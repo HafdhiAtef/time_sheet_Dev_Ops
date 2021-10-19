@@ -89,7 +89,7 @@ class UserServiceImplTest {
 		try{
 			l.info("In testAll()");
 			testAddUser();
-			testDeleteUser();
+			//testDeleteUser();
 			
 		}catch(Exception e){
 			l.error("out of testAll() with errors : "+ e);
