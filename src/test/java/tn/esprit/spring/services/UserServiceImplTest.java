@@ -50,11 +50,11 @@ class UserServiceImplTest {
 	}
 	
 	//@Test
-	public void testDeleteUser(){
-		us.deleteUser("1");
-		Assertions.assertNull(us.retrieveUser("1"));
-		l.info("User id:1 has been deleted");
-	}
+//	public void testDeleteUser(){
+//		us.deleteUser("1");
+//		Assertions.assertNull(us.retrieveUser("1"));
+//		l.info("User id:1 has been deleted");
+//	}
 
 	//@Test
 	public  void testRetrieveAllUseres() {
