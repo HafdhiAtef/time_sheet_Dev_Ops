@@ -30,11 +30,8 @@ pipeline{
         }
         stage('Building docker image'){
             steps {
-                script {
-                    dockerImage = docker.build("28609002/time_sheet_dev_ops")
-                }
 
-
+                sh 'docker build -t 28609002/time_sheet_dev_ops:latest .'
             }
         }
         stage('Deploy image'){
