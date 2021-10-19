@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment {
-        imagename = "28609002/time_sheet_Dev_Ops"
+        imagename = "28609002/time_sheet_dev_ops"
         registryCredential = '28609002-dockerhub'
         dockerImage = ''
     }
