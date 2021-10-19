@@ -31,7 +31,7 @@ pipeline{
         stage('Building docker image'){
             steps {
                 script {
-                    dockerImage = docker.build imagename
+                    dockerImage = docker.build("28609002/time_sheet_Dev_Ops")
                 }
 
 
@@ -40,7 +40,7 @@ pipeline{
         stage('Deploy image'){
             steps {
                 script {
-                    docker.withRegistry('', registryCredential){
+                        docker.withRegistry( '', registryCredential ) {
                         dockerImage.push("$BUILD_NUMBER")
                         dockerImage.push('latest')
                                     }
