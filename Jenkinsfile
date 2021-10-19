@@ -31,7 +31,7 @@ pipeline{
         stage('Building docker image'){
             steps {
                 script {
-                    dockerImage = docker.build("28609002/time_sheet_Dev_Ops")
+                    dockerImage = docker.build("28609002/time_sheet_dev_ops")
                 }
 
 
