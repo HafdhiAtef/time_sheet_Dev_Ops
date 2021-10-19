@@ -30,8 +30,9 @@ pipeline{
         }
         stage('Building docker image'){
             steps {
-
-                sh 'docker build -t 28609002/time_sheet_dev_ops:latest .'
+                script {
+                    dockerImage = docker.build imagename + ":$BUILD_NUMBER"
+                       }
             }
         }
         stage('Deploy image'){
