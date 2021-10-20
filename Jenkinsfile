@@ -7,8 +7,8 @@ pipeline{
         dockerImage = ''
     }
     tools {
-        maven "3.8.1"
-        jdk 'oracle'
+       // maven "3.8.1"
+        //jdk 'oracle'
     }
 
     stages{
