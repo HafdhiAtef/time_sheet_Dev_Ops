@@ -6,10 +6,10 @@ pipeline{
         registryCredential = '28609002-dockerhub'
         dockerImage = ''
     }
-   // tools {
-       // maven "3.8.1"
-        //jdk 'oracle'
-   // }
+    tools {
+       maven "3.8.1"
+        jdk 'oracle'
+    }
 
     stages{
         
