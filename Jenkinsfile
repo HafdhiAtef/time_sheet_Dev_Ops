@@ -56,7 +56,7 @@ pipeline{
         stage('Deploying the image into a container'){
             steps {
                 echo "Installing the app "
-                sh 'docker run -d --name $container -p 3000:3000 $imagename:$BUILD_NUMBER'
+                sh 'docker run -p 3000:3000 -d --name $container   $imagename:$BUILD_NUMBER'
             }
         }
         
