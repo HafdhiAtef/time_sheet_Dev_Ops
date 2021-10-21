@@ -4,7 +4,7 @@ pipeline{
     environment {
         imagename = "28609002/time_sheet_dev_ops"
         registryCredential = '28609002-dockerhub'
-        dockerImage = ''
+        dockerImage = 'spring-boot-app'
     }
     tools {
        maven "3.8.1"
@@ -56,7 +56,7 @@ pipeline{
         stage('Deploying the image into a container'){
             steps {
                 echo "Installing the app "
-                sh 'docker run -p 3000:3000 -d --name $container   $imagename:$BUILD_NUMBER'
+                sh 'docker run $imagename:$BUILD_NUMBER -p 3000:3000 -d --name $dockerImage  '
             }
         }
         
