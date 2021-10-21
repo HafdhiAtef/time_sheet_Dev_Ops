@@ -30,6 +30,12 @@ pipeline{
                 sh 'mvn test'
             }
         }
+        stage('Maven install'){
+            steps {
+                echo "Installing the app "
+                sh 'mvn install'
+            }
+        }
         stage('Building docker image'){
             steps {
                 script {
@@ -37,7 +43,7 @@ pipeline{
                        }
             }
         }
-        stage('Deploy image'){
+        stage('pushing to dockerhub'){
             steps {
                 script {
                         docker.withRegistry( '', registryCredential ) {
@@ -47,6 +53,13 @@ pipeline{
                 }
             }
         }
+        stage('Deploying the image into a container'){
+            steps {
+                echo "Installing the app "
+                sh 'docker run -d --name $container -p 3000:3000 $imagename:$BUILD_NUMBER'
+            }
+        }
+        
         //stage('Remove')
         stage('Notification!'){
             steps {
