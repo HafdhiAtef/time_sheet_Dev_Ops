@@ -3,18 +3,31 @@ pipeline {
     environment {
         imagename = "28609002/time_sheet_dev_ops"
         registryCredential = '28609002-dockerhub'
-        dockerImage = ''
+        dockerImage = 'Spring-app'
     }
+ //   revision = version + "-" + sprintf("%04d", env.BUILD_NUMBER.toInteger()   
     
     stages {
-
-        stage('Running our image from dockerhub inside container') {
+        stage('Preparing enviroment '){
             steps {
-               //bat "docker stop $container"
-               //bat "docker rm $container"
-               sh "docker run -d --name $container -p 3000:3000 $imagename:$BUILD_NUMBER"
+                echo "removing old image"
+                sh 'docker rmi -f $imagename:latest  '
             }
         }
+    
+    stages {
+        stage('Deploying the image into a container'){
+            steps {
+                echo "Installing the app "
+                sh 'docker run -p 8084:8084 -d --name $dockerImage $imagename:$BUILD_NUMBER   '
+            }
+        }
+        
+        
+ 
+        
+        
+         )
     }
 }
 
