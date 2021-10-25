@@ -19,7 +19,7 @@ pipeline {
         stage('Deploying the image into a container'){
             steps {
                 echo "Installing the app "
-                sh 'docker run -p 8084:8084 -d --name $dockerImage $imagename:$BUILD_NUMBER   '
+                sh 'docker run -p 8084:8084 -d --name $dockerImage $imagename:latest   '
             }
         }
         
