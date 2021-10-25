@@ -4,7 +4,7 @@ pipeline {
         imagename = "28609002/time_sheet_dev_ops"
         registryCredential = '28609002-dockerhub'
         dockerImage = 'Spring-app'
-    }
+                }
  //   revision = version + "-" + sprintf("%04d", env.BUILD_NUMBER.toInteger()   
     
     stages {
@@ -15,7 +15,7 @@ pipeline {
             }
         }
     
-    stages {
+    
         stage('Deploying the image into a container'){
             steps {
                 echo "Installing the app "
@@ -24,10 +24,11 @@ pipeline {
         }
         
         
+        
  
         
         
          
-    }
+        }
 }
 
