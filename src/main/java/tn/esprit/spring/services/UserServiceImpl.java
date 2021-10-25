@@ -75,13 +75,16 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public void deleteUser(String id) {
+	public void deleteUser(Long id) {
 		// TODO Log à ajouter en début de la méthode
 		l.info("In Method Delete");
-		userRepository.deleteById(Long.parseLong(id)); 
+		userRepository.deleteById(id); 
 		// TODO Log à ajouter à la fin de la méthode 
 		l.info("Out Method Update");
 	}
+
+	
+
 
 	@Override
 	public User retrieveUser(String id) {
