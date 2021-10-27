@@ -18,7 +18,13 @@ pipeline {
                 sh 'sudo docker rmi -f $imagename:latest  '
             }
         }
-    
+        stage('removing old container '){
+            steps {
+                echo "removing old image"
+                sh 'sudo docker stop  $dockerImage  '
+                sh 'sudo docker rm $dockerImage '
+            }
+        }    
     
         stage('Deploying the image into a container'){
             steps {
