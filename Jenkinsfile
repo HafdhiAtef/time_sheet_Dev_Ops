@@ -15,7 +15,7 @@ pipeline {
         stage('Preparing enviroment '){
             steps {
                 echo "removing old image"
-                sh 'docker rmi -f $imagename:latest  '
+                sh 'sudo docker rmi -f $imagename:latest  '
             }
         }
     
@@ -23,7 +23,7 @@ pipeline {
         stage('Deploying the image into a container'){
             steps {
                 echo "Installing the app "
-                sh 'docker run -p 8084:8084 -d --name $dockerImage $imagename:latest   '
+                sh 'sudo docker run -p 8084:8084 -d --name $dockerImage $imagename:latest   '
             }
         }
         
