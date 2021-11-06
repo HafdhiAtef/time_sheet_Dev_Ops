@@ -5,11 +5,11 @@ pipeline{
         registryCredential = '28609002-dockerhub'
         dockerImage = 'spring-boot-app'
     }
-   tools {
+  /* tools {
       maven "3.8.1"
       jdk 'oracle'
     }
-
+  */
     
     stages{
         
