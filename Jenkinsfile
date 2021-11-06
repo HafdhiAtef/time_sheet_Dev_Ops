@@ -5,10 +5,11 @@ pipeline {
         registryCredential = '28609002-dockerhub'
         dockerImage = 'Spring-app'
                 }
-    tools {
+  /*  tools {
        maven "3.8.1"
        jdk "oracle"
     }
+    */
  //   revision = version + "-" + sprintf("%04d", env.BUILD_NUMBER.toInteger()   
     
     stages {
