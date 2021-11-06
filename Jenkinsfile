@@ -8,10 +8,10 @@ pipeline{
         dockerImage = 'spring-boot-app'
     }
     tools {
-       maven "3.8.1"
+ /*      maven "3.8.1"
         jdk 'oracle'
     }
-
+*/
     
     stages{
         
