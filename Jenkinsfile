@@ -22,7 +22,7 @@ pipeline {
         stage('removing old container '){
             steps {
                 echo "removing old image"
-                sh 'sudo docker stop  $dockerImage  '
+             //   sh 'sudo docker stop  $dockerImage  '
                 sh 'sudo docker rm $dockerImage '
             }
         }    
