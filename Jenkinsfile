@@ -1,17 +1,15 @@
 pipeline{
-
-   
     agent none
     environment {
         imagename = "28609002/time_sheet_dev_ops"
         registryCredential = '28609002-dockerhub'
         dockerImage = 'spring-boot-app'
     }
-  /*  tools {
+   tools {
       maven "3.8.1"
       jdk 'oracle'
     }
-*/
+
     
     stages{
         
@@ -19,7 +17,7 @@ pipeline{
             steps {
                 echo "starting maven"
                 echo "Initiating clean compile commands"
-               // sh 'mvn --version'
+                sh 'mvn --version'
                 sh 'mvn clean compile install'
                 
             }
