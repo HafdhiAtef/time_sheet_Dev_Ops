@@ -7,8 +7,7 @@ pipeline {
                 }
     tools {
        maven "3.8.1"
-        jdk "oracle"
-        docker "docker"
+       jdk "oracle"
     }
  //   revision = version + "-" + sprintf("%04d", env.BUILD_NUMBER.toInteger()   
     
