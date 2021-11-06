@@ -19,7 +19,7 @@ pipeline{
             steps {
                 echo "starting maven"
                 echo "Initiating clean compile commands"
-                sh 'mvn --version'
+               // sh 'mvn --version'
                 sh 'mvn clean compile install'
                 
             }
