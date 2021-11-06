@@ -28,7 +28,7 @@ public class HelloController {
 	
 	@GetMapping("/hello")
 	public String hello() {
-		return "Hello From SpringBoot";
+		return "Hello From SpringBoot v1";
 	}
 	
 	@GetMapping("/retrieve-users")
