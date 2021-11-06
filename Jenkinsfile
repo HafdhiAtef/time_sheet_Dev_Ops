@@ -23,7 +23,7 @@ pipeline {
             steps {
                 echo "removing old image"
              //   sh 'sudo docker stop  $dockerImage  '
-                sh 'sudo docker rm $dockerImage '
+            //    sh 'sudo docker rm $dockerImage '
             }
         }    
     
