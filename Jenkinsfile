@@ -30,7 +30,7 @@ pipeline{
                 sh 'mvn test'
             }
         }
-        stage('Maven install'){
+        stage('Maven Deploy'){
             steps {
                 echo "Installing the app "
                 sh 'mvn install'
